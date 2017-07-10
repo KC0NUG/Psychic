@@ -8,6 +8,7 @@ var currentLetter = 0;
 var gameHasStarted = false;
 var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var currentAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var newGame = true;
 
   
 function displayHead() {
@@ -55,7 +56,7 @@ function getRandomLetter() {
     displayListOfLetters(currentAlphabet);	
  	currentLetter = Math.floor(Math.random() * 25);
  	//alert("Current Letter: " + currentLetter); 
- 	//alert(currentAlphabet[currentLetter]);
+ 	alert("Letter for player to pick: " + currentAlphabet[currentLetter]);
 }
 
 
@@ -70,6 +71,7 @@ function startGame() {
 	totalGuessesLeft = 0;
 	currentLetter = 0;
 	gameHasStarted = true;
+	newGame = true;
 
 	//Display information
 	displayHead();
@@ -85,10 +87,37 @@ function startGame() {
 
 	//get and set a random letter (number 0~25) for player to pick
 	//set up currnet alphabet 
-	getRandomLetter();
-
-	   
+	//getRandomLetter();   
 }
+
+
+function startNewGame() {
+	alert("starting new game");
+	// set vars for beginning of game
+	newGame = false;
+	maxNumberOfGuesses = 10;
+	totalGuesses = 0;
+	totalGuessesLeft = 0;
+	currentLetter = 0;
+	
+	//Display information
+	displayHead();
+	displayGuessLetter();
+	displayWins();
+	displayLosses();
+	displayGuessLeft();
+	displayYourGuesses();
+
+	//set and display totalnumber of guesses left
+	totalGuessesLeft = maxNumberOfGuesses;
+	displayChangeInGuessesLeft(totalGuessesLeft);
+
+	//get and set a random letter (number 0~25) for player to pick
+	//set up currnet alphabet 
+	getRandomLetter();   
+}
+
+
 
 
 // game start here with input
@@ -98,9 +127,31 @@ document.onkeyup = function(){
 		startGame();
 	}
 
+	//If newGame then set vars for new game
+	if (newGame === true){
+		startNewGame();
+	}
+
+	// Get input character
 	var x = document.getElementById("strOfGuesses");
 	x.value = x.value.toUpperCase();
-	alert(x.value);
+
+	// pre form checks on players choice if ok then compare else 
+
+	
+	alert("Players letter: " + x.value[totalGuesses]);
+	alert("Letter to choose: " + currentAlphabet[currentLetter]);
+	// check is player choose correctly or not
+	if (x.value[totalGuesses] === currentAlphabet[currentLetter]){
+		//winner
+		alert("Winner");
+	}
+	else{
+		alert("keep playing");
+		totalGuesses++;
+	}
+
+	
 }
 
 
