@@ -5,7 +5,9 @@ var totalGuesses = 0;
 var totalLosses = 0;
 var totalGuessesLeft = 0;
 var currentLetter = 0;
-
+var gameHasStarted = false;
+var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var currentAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   
 function displayHead() {
@@ -49,19 +51,27 @@ function displayListOfLetters(alphabet_str) {
 }
 
 function getRandomLetter() {
- 	var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    //final int N = alphabet.length();
-    //alert(alphabet);
-	displayListOfLetters(alphabet);
-	//alert(currentLetter);   
+ 	currentAlphabet = alphabet;
+    displayListOfLetters(currentAlphabet);	
  	currentLetter = Math.floor(Math.random() * 25);
- 	alert("Current Letter: " + currentLetter); 
- 	//alert(alphabet[currentLetter]);
+ 	//alert("Current Letter: " + currentLetter); 
+ 	//alert(currentAlphabet[currentLetter]);
 }
 
 
 
-function startGame(event) {
+function startGame() {
+	alert("starting game");
+	// set vars for beginning of game
+	maxNumberOfGuesses = 10;
+	totalWins = 0;
+	totalGuesses = 0;
+	totalLosses = 0;
+	totalGuessesLeft = 0;
+	currentLetter = 0;
+	gameHasStarted = true;
+
+	//Display information
 	displayHead();
 	displayGuessLetter();
 	displayWins();
@@ -73,29 +83,25 @@ function startGame(event) {
 	totalGuessesLeft = maxNumberOfGuesses;
 	displayChangeInGuessesLeft(totalGuessesLeft);
 
-	//pick a random letter (number 0~25)
-	// getRandomLetter();
+	//get and set a random letter (number 0~25) for player to pick
+	//set up currnet alphabet 
+	getRandomLetter();
 
-	// var x = event.keyCode;
-	// alert("key: " + x);
-   
+	   
 }
 
-//startGame();
-// document.getElementById("strOfGuesses").onkeyup = function(){
-	document.onkeyup = function(){
-	alert("I am here");
+
+// game start here with input
+document.onkeyup = function(){
+	// if game has not started, then start it.
+	if (gameHasStarted === false) {
+		startGame();
+	}
+
 	var x = document.getElementById("strOfGuesses");
 	x.value = x.value.toUpperCase();
 	alert(x.value);
 }
-
-function check(){
-	var x = document.getElementById("strOfGuesses");
-	x.value = x.value.toUpperCase();
-	alert(x.value);
-}
-
 
 
 
