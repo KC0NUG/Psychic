@@ -15,3 +15,34 @@ body {
 h1 {
   color: black;
 }
+
+
+#header{
+  float: top;
+  margin-top: 25px;
+}
+
+#guessletter{
+  float: top;
+  margin-top: 75px;
+}
+
+#wins{
+  float: top;
+  margin-top: 25px;
+}
+
+#losses{
+  float: top;
+  margin-top: 25px;
+}
+
+#guessleft{
+  float: top;
+  margin-top: 25px;
+}
+
+#yourguesses{
+  float: top;
+  margin-top: 25px;
+}
