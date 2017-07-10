@@ -4,49 +4,64 @@ var totalWins = 0;
 var totalGuesses = 0;
 var totalLosses = 0;
 var totalGuessesLeft = 0;
+var currentLetter = 0;
 
 
   
 function displayHead() {
-    var x1 = document.getElementById("header");     	
+    document.getElementById("header");     	
 }
 
 function displayGuessLetter() {
-	var x1 = document.getElementById("guessletter");     	
+	document.getElementById("guessletter");     	
 }
 
 function displayWins() {
-	var x1 = document.getElementById("wins");    	
+	document.getElementById("wins");    	
 }  
 
 function displayLosses() {
-	var x1 = document.getElementById("losses");      	
+	document.getElementById("losses");      	
 }
 
 function displayGuessLeft() {
-	var x1 = document.getElementById("guessleft");   	
+	document.getElementById("guessleft");   	
 } 
 
 function displayYourGuesses() {
-	var x1 = document.getElementById("yourguesses");	
+	document.getElementById("yourguesses");	
 }
   
-function displayWinsChange(num) {
-	var x1 = document.getElementById("numberOfWins");	
+function displayWinsChange(num) {		
 	document.getElementById("numberOfWins").innerHTML = Number(num);
 }
 
-function displayLossesChange(num) {
-	var x1 = document.getElementById("numberOfLosses");	
+function displayLossesChange(num) {	
 	document.getElementById("numberOfLosses").innerHTML = Number(num);
 }
 
 function displayChangeInGuessesLeft(num) {
 	document.getElementById("numberOfGuessesLeft").innerHTML = Number(num);
 }
- 
-function startGame() {
 
+function displayListOfLetters(alphabet_str) {
+	document.getElementById("listofletters").innerHTML = alphabet_str;
+}
+
+function getRandomLetter() {
+ 	var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //final int N = alphabet.length();
+    //alert(alphabet);
+	displayListOfLetters(alphabet);
+	alert(currentLetter);   
+ 	//currentLetter = Math.floor(Math.random() * 25);
+ 	//alert(currentLetter); 
+ 	alert(alphabet[currentLetter]);
+}
+
+
+
+function startGame() {
 	displayHead();
 	displayGuessLetter();
 	displayWins();
@@ -58,8 +73,22 @@ function startGame() {
 	totalGuessesLeft = maxNumberOfGuesses;
 	displayChangeInGuessesLeft(totalGuessesLeft);
 
+	//pick a random letter (number 0~25)
+	getRandomLetter();
+
+
+//var validStatus = ["t","h","w","d" ]
+
+    
+
 }
 
+
+  // How would we log...
+ //    document.onkeyup = function(event) {
+ //    var press = event.key;
+ //    alert(press);
+	// }
 
 
 //	set gameLoses to zero
