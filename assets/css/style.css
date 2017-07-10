@@ -28,8 +28,13 @@ h1 {
 }
 
 #wins{
-  float: top;
-  margin-top: 25px;
+  	float: top;
+    margin-top: 25px;
+}
+
+#numberOfWins{
+	/*float: left;
+	margin-left: 20px;*/
 }
 
 #losses{

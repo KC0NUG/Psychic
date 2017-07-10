@@ -1,53 +1,49 @@
-// alert("I am in game.js");
-// alert("But I am not in correct directory");
 
+var maxNumberOfGuesses = 10;
+var totalWins = 0;
+var totalGuesses = 0;
+var totalLosses = 0;
+var totalGuessesLeft = 0;
 
-//  set max number of trys = 10
-
-var maxNumberOfTrys = 0;
-
-//  set gameWins to zero
-var gameWins = 0;
-//  display gameWins
-//alert("gameWins: " + gameWins);
 
   
 function displayHead() {
-    var x1 = document.getElementById("header");
-    // x.style.fontSize = "25px"; 
-    x1.style.color = "red"; 	
+    var x1 = document.getElementById("header");     	
 }
 
 function displayGuessLetter() {
-var x1 = document.getElementById("guessletter");
-    // x.style.fontSize = "25px"; 
-    x1.style.color = "red"; 	
+	var x1 = document.getElementById("guessletter");     	
 }
 
 function displayWins() {
-	var x1 = document.getElementById("wins");
-    // x.style.fontSize = "25px"; 
-    x1.style.color = "red"; 	
+	var x1 = document.getElementById("wins");    	
 }  
 
 function displayLosses() {
-	var x1 = document.getElementById("losses");
-    // x.style.fontSize = "25px"; 
-    x1.style.color = "red"; 	
+	var x1 = document.getElementById("losses");      	
 }
 
 function displayGuessLeft() {
-var x1 = document.getElementById("guessleft");
-    // x.style.fontSize = "25px"; 
-    x1.style.color = "red"; 	
+	var x1 = document.getElementById("guessleft");   	
 } 
 
 function displayYourGuesses() {
-var x1 = document.getElementById("yourguesses");
-    // x.style.fontSize = "25px"; 
-    x1.style.color = "red"; 	
+	var x1 = document.getElementById("yourguesses");	
 }
   
+function displayWinsChange(num) {
+	var x1 = document.getElementById("numberOfWins");	
+	document.getElementById("numberOfWins").innerHTML = Number(num);
+}
+
+function displayLossesChange(num) {
+	var x1 = document.getElementById("numberOfLosses");	
+	document.getElementById("numberOfLosses").innerHTML = Number(num);
+}
+
+function displayChangeInGuessesLeft(num) {
+	document.getElementById("numberOfGuessesLeft").innerHTML = Number(num);
+}
  
 function startGame() {
 
@@ -57,6 +53,11 @@ function startGame() {
 	displayLosses();
 	displayGuessLeft();
 	displayYourGuesses();
+
+	//set and display totalnumber of guesses left
+	totalGuessesLeft = maxNumberOfGuesses;
+	displayChangeInGuessesLeft(totalGuessesLeft);
+
 }
 
 
