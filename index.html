@@ -7,7 +7,9 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Psychic Game</title>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -15,37 +17,24 @@
   <script type="text/javascript" src="game.js"></script>
 
   <link rel="stylesheet" href="./assets/css/reset.css"> 
-
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+  <!-- Added a link to Bootstrap-->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+ -->
  
 </head>
-
- 
 <body>
-  <section id = "header">
-    <h1>The Psychic Game</h1> 
-  </section>
+  
+  <h1 id= "header">The Psychic Game</h1> 
+  <p id = "guessletter">Guess what letter I'm thinking of: </p> 
+  <p id = "wins">Wins: </p> 
+  <p id = "losses">Losses: </p> 
+  <p id = "guessleft">Guesses Left: </p> 
+  <p id = "yourguesses">Your Guesses so far: </p> 
+  
 
-  <section id = "guessletter">
-    <p>Guess what letter I'm thinking of: </p> 
-  </section> 
-
-  <section id = "wins">
-    <p>Wins: </p> 
-  </section>  
-
-  <section id = "losses">
-    <p>Losses: </p> 
-  </section>  
-
-  <section id = "guessleft">
-    <p>Guesses Left: </p> 
-  </section>
-
-  <section id = "yourguesses">
-    <p>Your Guesses so far: </p> 
-  </section>    
-
+  <button onclick="startGame()">Start Game!</button>
 
 <!--   <div id = "footer">
 © Copyright 2017 Charlers Simpson
