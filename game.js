@@ -53,15 +53,15 @@ function getRandomLetter() {
     //final int N = alphabet.length();
     //alert(alphabet);
 	displayListOfLetters(alphabet);
-	alert(currentLetter);   
- 	//currentLetter = Math.floor(Math.random() * 25);
- 	//alert(currentLetter); 
- 	alert(alphabet[currentLetter]);
+	//alert(currentLetter);   
+ 	currentLetter = Math.floor(Math.random() * 25);
+ 	alert("Current Letter: " + currentLetter); 
+ 	//alert(alphabet[currentLetter]);
 }
 
 
 
-function startGame() {
+function startGame(event) {
 	displayHead();
 	displayGuessLetter();
 	displayWins();
@@ -74,15 +74,32 @@ function startGame() {
 	displayChangeInGuessesLeft(totalGuessesLeft);
 
 	//pick a random letter (number 0~25)
-	getRandomLetter();
+	// getRandomLetter();
+
+	// var x = event.keyCode;
+	// alert("key: " + x);
+   
+}
+
+//startGame();
+// document.getElementById("strOfGuesses").onkeyup = function(){
+	document.onkeyup = function(){
+	alert("I am here");
+	var x = document.getElementById("strOfGuesses");
+	x.value = x.value.toUpperCase();
+	alert(x.value);
+}
+
+function check(){
+	var x = document.getElementById("strOfGuesses");
+	x.value = x.value.toUpperCase();
+	alert(x.value);
+}
+
+
 
 
 //var validStatus = ["t","h","w","d" ]
-
-    
-
-}
-
 
   // How would we log...
  //    document.onkeyup = function(event) {
