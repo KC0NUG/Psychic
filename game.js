@@ -1,5 +1,5 @@
 
-var guessLimit = 3;
+var guessLimit = 9;
 var totalWins = 0;
 var totalGuesses = 0;
 var totalLosses = 0;
@@ -67,7 +67,7 @@ function UpdateGuessesLeft(){
 	totalGuessesLeft--;
 	document.getElementById("numberOfGuessesLeft").innerHTML = Number(totalGuessesLeft);
 	if (totalGuessesLeft<=0){
-		alert("Sorry, You Lost");
+		//alert("Sorry, You Lost");
 		//Update losses
 		totalLosses++;
 		displayLossesChange(totalLosses);
@@ -89,7 +89,7 @@ function getRandomLetter() {
     displayListOfLetters(currentAlphabet);	
  	currentLetter = Math.floor(Math.random() * 25);
  	//alert("Current Letter: " + currentLetter); 
- 	alert("Letter for player to pick: " + currentAlphabet[currentLetter]);
+ 	//alert("Letter for player to pick: " + currentAlphabet[currentLetter]);
 }
 
 
@@ -137,8 +137,6 @@ function startNewGame() {
 }
 
 
-
-
 function checkResponse(){
 	// check if game has started if not start it
 	if (gameHasStarted === false){
@@ -146,13 +144,13 @@ function checkResponse(){
 		} //if game has started
 
 	// get players choice and process it	
-	var x = document.getElementById("Choice");
+	var x = document.getElementById("Choice");	
 	x.value = x.value.toUpperCase();
 
 	// Check if players choice = computers choice
 	if (x.value===currentAlphabet[currentLetter]) {
 		// Winner
-		alert("winner");
+		//alert("winner");
 		UpDateTotalWins();
 		startNewGame();
 		
@@ -164,24 +162,19 @@ function checkResponse(){
 			var goodval = currentAlphabet.includes(x.value);
 			
 			if (goodval===true){						
-				
+				//check for empty list of bad guesses
 				if (listofGuesses.length===0){
 				 	listofGuesses = x.value;
 				 	UpdateGuessesLeft();
-				  } else {	
+				  } else {	//have 1 or more bad guesses check if choice already in bad choices
 				  		var choiceAlreadyChoosen = listofGuesses.includes(x.value);
 				  		if (choiceAlreadyChoosen===false){
 				  			var tmp = listofGuesses.concat(x.value);
-				  			listofGuesses = tmp;				  			 	
-				 			// alert(tmp.length);
+				  			listofGuesses = tmp;			 			
 				 			UpdateGuessesLeft();
 				 			}
 				 		}
-				// Update your guesses sofar
-				//if listofGuess is empty add element
-				//eles  if not choosen before add
-				// Update Guesses Left (if not alooser)
-				
+								
 				//display list
 				displayListOfGuesses();
 			}	
