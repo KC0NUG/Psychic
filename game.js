@@ -1,5 +1,5 @@
 
-var maxNumberOfGuesses = 10;
+var guessLimit = 3;
 var totalWins = 0;
 var totalGuesses = 0;
 var totalLosses = 0;
@@ -66,6 +66,14 @@ function displayListOfLetters(alphabet_str) {
 function UpdateGuessesLeft(){
 	totalGuessesLeft--;
 	document.getElementById("numberOfGuessesLeft").innerHTML = Number(totalGuessesLeft);
+	if (totalGuessesLeft<=0){
+		alert("Sorry, You Lost");
+		//Update losses
+		totalLosses++;
+		displayLossesChange(totalLosses);
+		//start new game
+		startNewGame();
+	}
 }
 
 function UpDateTotalWins(){
@@ -103,7 +111,7 @@ function startNewGame() {
 	}
 	else {
 		newGame = false;
-		maxNumberOfGuesses = 10;
+		maxNumberOfGuesses = guessLimit;
 		totalGuesses = 0;
 		totalGuessesLeft = 0;
 		currentLetter = 0;
