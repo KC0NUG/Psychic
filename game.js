@@ -60,9 +60,8 @@ function getRandomLetter() {
 }
 
 
-
 function startGame() {
-	alert("starting game");
+	// alert("starting game");
 	// set vars for beginning of game
 	maxNumberOfGuesses = 10;
 	totalWins = 0;
@@ -88,12 +87,16 @@ function startGame() {
 	//get and set a random letter (number 0~25) for player to pick
 	//set up currnet alphabet 
 	//getRandomLetter();   
+	startNewGame();
 }
 
 
 function startNewGame() {
-	alert("starting new game");
+	// alert("starting new game");
 	// set vars for beginning of game
+	if (gameHasStarted=== false){
+		startGame();
+	}
 	newGame = false;
 	maxNumberOfGuesses = 10;
 	totalGuesses = 0;
@@ -107,6 +110,7 @@ function startNewGame() {
 	displayLosses();
 	displayGuessLeft();
 	displayYourGuesses();
+	
 
 	//set and display totalnumber of guesses left
 	totalGuessesLeft = maxNumberOfGuesses;
@@ -117,42 +121,65 @@ function startNewGame() {
 	getRandomLetter();   
 }
 
+function checkResponse(){
+	
 
-
-
-// game start here with input
-document.onkeyup = function(){
-	// if game has not started, then start it.
-	if (gameHasStarted === false) {
+	if (gameHasStarted === false){
 		startGame();
 	}
 
-	//If newGame then set vars for new game
-	if (newGame === true){
-		startNewGame();
+
+		var x = document.getElementById("Choice");
+		x.value = x.value.toUpperCase();
+
+		if (x.value===currentAlphabet[currentLetter]) {
+			alert("winer");
+		}
+		else {
+			alert("choose again");
+		}
+
+		x.value="";
+	
 	}
 
-	// Get input character
-	var x = document.getElementById("strOfGuesses");
-	x.value = x.value.toUpperCase();
 
-	// pre form checks on players choice if ok then compare else 
+
+ 
+// game start here with input
+//document.onkeyup = function(){
+// document.onkeydown = function(){
+// 	// if game has not started, then start it.
+// 	if (gameHasStarted === false) {
+// 		startGame();
+// 	}
+
+// 	//If newGame then set vars for new game
+// 	if (newGame === true){
+// 		startNewGame();
+// 	}
+
+// 	// Get input character
+// 	var x = document.getElementById("strOfGuesses");
+// 	x.value = x.value.toUpperCase();
+
+// 	// pre form checks on players choice if ok then compare else 
 
 	
-	alert("Players letter: " + x.value[totalGuesses]);
-	alert("Letter to choose: " + currentAlphabet[currentLetter]);
-	// check is player choose correctly or not
-	if (x.value[totalGuesses] === currentAlphabet[currentLetter]){
-		//winner
-		alert("Winner");
-	}
-	else{
-		alert("keep playing");
-		totalGuesses++;
-	}
+// 	alert("Players letter: " + x.value[totalGuesses]);
+// 	alert("Letter to choose: " + currentAlphabet[currentLetter]);
+// 	// check is player choose correctly or not
+// 	if (x.value[totalGuesses] === currentAlphabet[currentLetter]){
+// 		//winner
+// 		alert("Winner");
+// 	}
+// 	else{
+// 		alert("keep playing");
+// 		// totalGuesses++;
+// 	}
 
 	
-}
+// }
 
 
 

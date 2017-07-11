@@ -19,17 +19,17 @@ h1 {
 
 #header{
   float: top;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 #guessletter{
   float: top;
-  margin-top: 75px;
+  margin-top: 60px;
 }
 
 #wins{
   	float: top;
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 #numberOfWins{
@@ -39,15 +39,32 @@ h1 {
 
 #losses{
   float: top;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 #guessleft{
   float: top;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 #yourguesses{
   float: top;
-  margin-top: 25px;
+  margin-top: 20px;
 }
+
+#getchoice{
+  float: top;
+  margin-top: 20px;
+}
+
+/*#checkrsp{
+  clear: top;
+  float: left;
+  margin-left: 20px;
+}
+
+#btn1{
+  clear: left;
+  float: top;
+  margin-top: 20px;
+}*/
