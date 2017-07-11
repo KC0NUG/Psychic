@@ -6,9 +6,17 @@ var totalLosses = 0;
 var totalGuessesLeft = 0;
 var currentLetter = 0;
 var gameHasStarted = false;
+var newGame = true;
+
 var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var currentAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var newGame = true;
+var listofGuesses = "";
+
+var array_of_aplhabet = [
+"A","B","C","D","E","F","G","H","I","J","K","L","M",
+"N","O","P","Q","R","S","T","U","V","W","X","Y","Z"
+];
+
 
   
 function displayHead() {
@@ -34,7 +42,11 @@ function displayGuessLeft() {
 function displayYourGuesses() {
 	document.getElementById("yourguesses");	
 }
-  
+
+function displayListOfGuesses(){
+		document.getElementById("strOfGuesses").innerHTML = listofGuesses;	
+}
+
 function displayWinsChange(num) {		
 	document.getElementById("numberOfWins").innerHTML = Number(num);
 }
@@ -48,7 +60,7 @@ function displayChangeInGuessesLeft(num) {
 }
 
 function displayListOfLetters(alphabet_str) {
-	document.getElementById("listofletters").innerHTML = alphabet_str;
+	//document.getElementById("listofletters").innerHTML = alphabet_str;
 }
 
 function UpdateGuessesLeft(){
@@ -73,33 +85,12 @@ function getRandomLetter() {
 }
 
 
-function startGame() {
+function startTheGame() {
 	// alert("starting game");
 	// set vars for beginning of game
-	maxNumberOfGuesses = 10;
 	totalWins = 0;
-	totalGuesses = 0;
 	totalLosses = 0;
-	totalGuessesLeft = 0;
-	currentLetter = 0;
 	gameHasStarted = true;
-	newGame = true;
-
-	//Display information
-	displayHead();
-	displayGuessLetter();
-	displayWins();
-	displayLosses();
-	displayGuessLeft();
-	displayYourGuesses();
-
-	//set and display totalnumber of guesses left
-	totalGuessesLeft = maxNumberOfGuesses;
-	displayChangeInGuessesLeft(totalGuessesLeft);
-
-	//get and set a random letter (number 0~25) for player to pick
-	//set up currnet alphabet 
-	//getRandomLetter();   
 	startNewGame();
 }
 
@@ -108,125 +99,87 @@ function startNewGame() {
 	// alert("starting new game");
 	// set vars for beginning of game
 	if (gameHasStarted=== false){
-		startGame();
+		startTheGame();
 	}
-	newGame = false;
-	maxNumberOfGuesses = 10;
-	totalGuesses = 0;
-	totalGuessesLeft = 0;
-	currentLetter = 0;
+	else {
+		newGame = false;
+		maxNumberOfGuesses = 10;
+		totalGuesses = 0;
+		totalGuessesLeft = 0;
+		currentLetter = 0;
+		listofGuesses = "";
 	
-	//Display information
-	displayHead();
-	displayGuessLetter();
-	displayWins();
-	displayLosses();
-	displayGuessLeft();
-	displayYourGuesses();
-	
+		//Display information
+		displayHead();
+		displayGuessLetter();
+		displayWins();
+		displayLosses();
+		displayGuessLeft();
+		displayYourGuesses();
+		displayListOfGuesses();	
 
-	//set and display totalnumber of guesses left
-	totalGuessesLeft = maxNumberOfGuesses;
-	displayChangeInGuessesLeft(totalGuessesLeft);
+		//set and display totalnumber of guesses left
+		totalGuessesLeft = maxNumberOfGuesses;
+		displayChangeInGuessesLeft(totalGuessesLeft);
 
-	//get and set a random letter (number 0~25) for player to pick
-	//set up currnet alphabet 
-	getRandomLetter();   
+		//get and set a random letter (number 0~25) for player to pick
+		//set up currnet alphabet 
+		getRandomLetter(); 
+		} // else if game not started 
 }
 
 
 
 
 function checkResponse(){
-	
+	// check if game has started if not start it
 	if (gameHasStarted === false){
-		startGame();
-		} //if
+		startTheGame();
+		} //if game has started
 
+	// get players choice and process it	
 	var x = document.getElementById("Choice");
 	x.value = x.value.toUpperCase();
 
+	// Check if players choice = computers choice
 	if (x.value===currentAlphabet[currentLetter]) {
-		
-		alert("winer");
+		// Winner
+		alert("winner");
 		UpDateTotalWins();
+		startNewGame();
 		
 		} else {
+			// Did not win
+			//alert("choose again");
 
-			alert("choose again");
-			// if x.value is a valid entry 
-			var goodval = false;
-			for (var a=0; a<=25; a++){
-				if (x.value === currentAlphabet[a]){
-					goodval = true;
-					} //if
-				}//for
-			if (goodval===true){
-				UpdateGuessesLeft();
+			// if x.value is a valid entry i.e a character A~Z
+			var goodval = currentAlphabet.includes(x.value);
+			
+			if (goodval===true){						
+				
+				if (listofGuesses.length===0){
+				 	listofGuesses = x.value;
+				 	UpdateGuessesLeft();
+				  } else {	
+				  		var choiceAlreadyChoosen = listofGuesses.includes(x.value);
+				  		if (choiceAlreadyChoosen===false){
+				  			var tmp = listofGuesses.concat(x.value);
+				  			listofGuesses = tmp;				  			 	
+				 			// alert(tmp.length);
+				 			UpdateGuessesLeft();
+				 			}
+				 		}
 				// Update your guesses sofar
-		// Update Guesses Left (if not alooser)
+				//if listofGuess is empty add element
+				//eles  if not choosen before add
+				// Update Guesses Left (if not alooser)
+				
+				//display list
+				displayListOfGuesses();
 			}	
 		
 		} //else
-
-	x.value="";
+	//Set players choice 
+	x.value=""; 
 	
-	}
-
-
-
- 
-// game start here with input
-//document.onkeyup = function(){
-// document.onkeydown = function(){
-// 	// if game has not started, then start it.
-// 	if (gameHasStarted === false) {
-// 		startGame();
-// 	}
-
-// 	//If newGame then set vars for new game
-// 	if (newGame === true){
-// 		startNewGame();
-// 	}
-
-// 	// Get input character
-// 	var x = document.getElementById("strOfGuesses");
-// 	x.value = x.value.toUpperCase();
-
-// 	// pre form checks on players choice if ok then compare else 
-
-	
-// 	alert("Players letter: " + x.value[totalGuesses]);
-// 	alert("Letter to choose: " + currentAlphabet[currentLetter]);
-// 	// check is player choose correctly or not
-// 	if (x.value[totalGuesses] === currentAlphabet[currentLetter]){
-// 		//winner
-// 		alert("Winner");
-// 	}
-// 	else{
-// 		alert("keep playing");
-// 		// totalGuesses++;
-// 	}
-
-	
-// }
-
-
-
-//var validStatus = ["t","h","w","d" ]
-
-  // How would we log...
- //    document.onkeyup = function(event) {
- //    var press = event.key;
- //    alert(press);
-	// }
-
-
-//	set gameLoses to zero
-//  set guessesSoFar to zero
-
-// start game
-// getTry
-// test getTry
-// set win or loss.
-// display results
+	} //checkResponse

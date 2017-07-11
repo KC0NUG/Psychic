@@ -9,8 +9,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Psychic Game</title>
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <!-- find way to move and reference game.js in /assests/javascript/ the correct directory -->
@@ -19,10 +17,7 @@
   <link rel="stylesheet" href="./assets/css/reset.css"> 
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 
-  <!-- Added a link to Bootstrap-->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
- -->
- 
+  
 </head>
 <body>
   
@@ -32,20 +27,14 @@
   <p id = "losses">Losses: <span id = "numberOfLosses">0</span></p> 
   <p id = "guessleft">Guesses Left: <span id = "numberOfGuessesLeft">0</span></p> 
   <p id = "yourguesses">Your Guesses so far: <span id = "strOfGuesses"> </span></p> 
-  
   <p id = "getchoice">Enter guess: <input type="text" id ="Choice"> </p>
-
-   <button id = "checkrsp" onclick="checkResponse()">Check Response</button>
+  <button id = "checkrsp" onclick="checkResponse()">Check Response</button>
   <!-- <input type="text" onkeydown="startGame(event)">   -->
-   <button id = "btn1" onclick="startGame()">Start the Psychic Game!</button>
-   <button id = "btn2" onclick="startNewGame()">Start a New Game!</button>
+  <button id = "btn1" onclick="startTheGame()">Start the Psychic Game!</button>
+  <button id = "btn2" onclick="startNewGame()">Start a New Game!</button>
   
-<!--   <div id = "footer">
-© Copyright 2017 Charlers Simpson
-  </div> -->
 
 </body>
-
 </html>
 
 
