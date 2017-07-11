@@ -51,6 +51,19 @@ function displayListOfLetters(alphabet_str) {
 	document.getElementById("listofletters").innerHTML = alphabet_str;
 }
 
+function UpdateGuessesLeft(){
+	totalGuessesLeft--;
+	document.getElementById("numberOfGuessesLeft").innerHTML = Number(totalGuessesLeft);
+}
+
+function UpDateTotalWins(){
+	//update wins
+	totalWins++;
+	document.getElementById("numberOfWins").innerHTML = Number(totalWins);
+}
+
+
+
 function getRandomLetter() {
  	currentAlphabet = alphabet;
     displayListOfLetters(currentAlphabet);	
@@ -121,25 +134,42 @@ function startNewGame() {
 	getRandomLetter();   
 }
 
+
+
+
 function checkResponse(){
 	
-
 	if (gameHasStarted === false){
 		startGame();
-	}
+		} //if
 
+	var x = document.getElementById("Choice");
+	x.value = x.value.toUpperCase();
 
-		var x = document.getElementById("Choice");
-		x.value = x.value.toUpperCase();
+	if (x.value===currentAlphabet[currentLetter]) {
+		
+		alert("winer");
+		UpDateTotalWins();
+		
+		} else {
 
-		if (x.value===currentAlphabet[currentLetter]) {
-			alert("winer");
-		}
-		else {
 			alert("choose again");
-		}
+			// if x.value is a valid entry 
+			var goodval = false;
+			for (var a=0; a<=25; a++){
+				if (x.value === currentAlphabet[a]){
+					goodval = true;
+					} //if
+				}//for
+			if (goodval===true){
+				UpdateGuessesLeft();
+				// Update your guesses sofar
+		// Update Guesses Left (if not alooser)
+			}	
+		
+		} //else
 
-		x.value="";
+	x.value="";
 	
 	}
 
