@@ -12,12 +12,6 @@ var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var currentAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var listofGuesses = "";
 
-var array_of_aplhabet = [
-"A","B","C","D","E","F","G","H","I","J","K","L","M",
-"N","O","P","Q","R","S","T","U","V","W","X","Y","Z"
-];
-
-
   
 function displayHead() {
     document.getElementById("header");     	
@@ -47,20 +41,12 @@ function displayListOfGuesses(){
 		document.getElementById("strOfGuesses").innerHTML = listofGuesses;	
 }
 
-function displayWinsChange(num) {		
-	document.getElementById("numberOfWins").innerHTML = Number(num);
-}
-
 function displayLossesChange(num) {	
 	document.getElementById("numberOfLosses").innerHTML = Number(num);
 }
 
 function displayChangeInGuessesLeft(num) {
 	document.getElementById("numberOfGuessesLeft").innerHTML = Number(num);
-}
-
-function displayListOfLetters(alphabet_str) {
-	//document.getElementById("listofletters").innerHTML = alphabet_str;
 }
 
 function UpdateGuessesLeft(){
@@ -76,6 +62,7 @@ function UpdateGuessesLeft(){
 	}
 }
 
+
 function UpDateTotalWins(){
 	//update wins
 	totalWins++;
@@ -85,8 +72,7 @@ function UpDateTotalWins(){
 
 
 function getRandomLetter() {
- 	currentAlphabet = alphabet;
-    displayListOfLetters(currentAlphabet);	
+ 	currentAlphabet = alphabet;    
  	currentLetter = Math.floor(Math.random() * 25);
  	//alert("Current Letter: " + currentLetter); 
  	//alert("Letter for player to pick: " + currentAlphabet[currentLetter]);
@@ -137,18 +123,27 @@ function startNewGame() {
 }
 
 
+// get keyup keys and assign to xInPutChar
+var xInPutChar = "";
+$(document).ready(function(){
+	$(document).on("keyup", "body", function(e){
+	console.log(e.key, e.keyCode, e.which);
+	xInPutChar = String(e.key);
+	xInPutChar = xInPutChar.toUpperCase();	
+	checkResponse();});
+});
+
+
+
 function checkResponse(){
 	// check if game has started if not start it
 	if (gameHasStarted === false){
 		startTheGame();
 		} //if game has started
-
 	// get players choice and process it	
-	var x = document.getElementById("Choice");	
-	x.value = x.value.toUpperCase();
-
+	
 	// Check if players choice = computers choice
-	if (x.value===currentAlphabet[currentLetter]) {
+	if (xInPutChar===currentAlphabet[currentLetter]) {
 		// Winner
 		//alert("winner");
 		UpDateTotalWins();
@@ -158,18 +153,18 @@ function checkResponse(){
 			// Did not win
 			//alert("choose again");
 
-			// if x.value is a valid entry i.e a character A~Z
-			var goodval = currentAlphabet.includes(x.value);
+			// if xInPutChar is a valid entry i.e a character A~Z
+			var goodval = currentAlphabet.includes(xInPutChar);
 			
 			if (goodval===true){						
 				//check for empty list of bad guesses
 				if (listofGuesses.length===0){
-				 	listofGuesses = x.value;
+				 	listofGuesses = xInPutChar;
 				 	UpdateGuessesLeft();
 				  } else {	//have 1 or more bad guesses check if choice already in bad choices
-				  		var choiceAlreadyChoosen = listofGuesses.includes(x.value);
+				  		var choiceAlreadyChoosen = listofGuesses.includes(xInPutChar);
 				  		if (choiceAlreadyChoosen===false){
-				  			var tmp = listofGuesses.concat(x.value);
+				  			var tmp = listofGuesses.concat(xInPutChar);
 				  			listofGuesses = tmp;			 			
 				 			UpdateGuessesLeft();
 				 			}
@@ -181,6 +176,6 @@ function checkResponse(){
 		
 		} //else
 	//Set players choice 
-	x.value=""; 
+	xInPutChar=""; 
 	
-	} //checkResponse
+	} //checkResponse	
